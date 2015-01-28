@@ -1,0 +1,169 @@
+body {
+background-color: #EFEFEF;
+text-align: center;
+}
+
+
+#block1 {
+    position: absolute;
+}
+
+.namecard {
+position: fixed;
+left: 50%;
+top: 50%;
+margin-left: -278px;
+margin-top: -168px;
+width: 557px;
+height: 400px;
+cursor: crosshair;
+background-color: white;
+}
+
+.blackground {
+background-color: #1E1E20;
+margin-left: 22px;
+margin-top: 27px;
+width: 513px;
+/*为什么橙色选中框超出了namecard的范围*/
+height: 346px;
+}
+
+
+.content {
+/*为什么橙色选中框没有选中右下两条线, why the chosen area doesn't include the right and bottom lines?*/
+position: absolute;
+background-color: white;
+margin-left: 5px;
+margin-top: 5px;
+width: 503px;
+height: 336px;
+z-index: 20;
+}
+
+.clock {
+position: absolute;
+background-color: #1E1E20;
+width: 167px;
+height: 50px;
+margin-left: 336px;
+}
+
+#clock {
+margin-top: -7px;
+}
+
+.borderhorizontal {
+position: absolute;
+background-color: #1E1E20;
+width: 503px;
+height: 2px;
+}
+
+#top {
+/*为什么是盒子还不是线？why the area is a box not a line?*/
+margin-top: 100px;
+}
+
+#top2 {
+margin-top: 104px;
+}
+
+#bottom {
+margin-top: 158px;
+}
+
+.bordervertical {
+position: absolute;
+background-color: #1E1E20;
+height: 176px;
+width: 2px;
+}
+
+#left {
+margin-left: 126px;
+}
+
+#middle {
+margin-left: 251px;
+}
+
+#right {
+margin-left: 377px;
+}
+
+.name {
+position: absolute;
+font-family: 'Medula One', cursive;
+font-size: 85px;
+/*font-weight: bold;*/
+letter-spacing: 5px;
+margin-left: 25px;
+margin-top: 16px; 	
+}
+
+.decoleft {
+position:absolute;
+margin-left: 17px;
+margin-top: 16px;
+}
+
+.decoright {
+position:absolute;
+margin-left: 447px;
+margin-top: 16px;
+}
+
+.department {
+position:absolute;
+font-family: 'Abel', sans-serif;
+font-size: 23px;
+font-weight: bold;
+margin-left: 69px;
+margin-top: 17px;
+letter-spacing: 3px;
+}
+
+.educationtitle {
+font-family: "Cantarell", sans-serif;
+font-size:13px;
+margin-top:30px;
+}
+
+#education {
+position: absolute;
+margin-left: 24px;
+}
+
+#workhour {
+position: absolute;
+margin-left: 146px;
+}
+
+#skills {
+position: absolute;
+margin-left: 281px;
+}
+
+#contact {
+position: absolute;
+margin-left: 407px;
+}
+
+.detailcontent {
+font-family: Lato;
+font-size: 15px;
+margin-top: 10px;
+}
+
+.shortline {
+margin-top: 4px;
+border-bottom: 2px solid #1E1E20;
+}
+
+#1 {
+position: absolute;
+margin-left: 30px;
+width: 10px;
+height: 10px;
+}
