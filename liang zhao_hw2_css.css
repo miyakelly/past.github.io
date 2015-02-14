@@ -2,16 +2,24 @@ body {
 	text-align: center;
 }
 
+#frame {
+	display: inline-block;
+	width: 1200px;
+}
+
 .columnname {
-	position: relative;
+	display: inline-block;
 	font-family: Lato;
+	width: 1200px;
 }
 
 .name, .gpa, .gre_v, .gre_q, .essay, .recom {
 	display: inline-block;
-	width: 80px;
+	width: 127px;
 	height: 20px;
 	margin: 1em;
+	font-size: 20px;
+	background-color: green;
 }
 
 /*.gpa {
@@ -48,9 +56,13 @@ body {
 
 .name1, .gpa1, .gre_v1, .gre_q1, .essay1, .recom1 {
 	display: inline-block;
-	width: 100px;
-	height: 20px;
+	width: 140px;
+	height: 40px;
 	margin: 1em;
+	font-family: Lato;
+	font-size: 15px;
+	background-color: yellow;
+	text-align: center;
 }
 
 /*.gpa1 {

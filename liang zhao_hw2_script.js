@@ -13,7 +13,7 @@ $(document).ready(function () {
             div.append("<div class='recom1'>" + json[i].Recom + "</div>");
 
             //$('#hw2div').append(rowdiv); 
-            $('#hw2div').append(div);
+            $('#frame').append(div);
 
         //var div_gpa;
         //for (var a = 0; a < json.length; a++) {
@@ -29,7 +29,8 @@ $(document).ready(function () {
 	});
 });
 
-/*function(){
+/*trying something I don't understand and the code failed
+function(){
     var div_name = "https://hivelab.org/static/students.json";
     $.getJSON( div_name, {
         tags: "name",
