@@ -5,15 +5,15 @@ $(document).ready(function () {
 
             div = $("<div>");
 
-            div.append("<div class='name1'>" + json[i].Name +"</div>");
-            div.append("<div class='gpa1'>" + json[i].GPA + "</div>");
-            div.append("<div class='gre_q1'>" + json[i].GRE_Q + "</div>");
-            div.append("<div class='gre_v1'>" + json[i].GRE_V + "</div>");
-            div.append("<div class='essay1'>" + json[i].Essay + "</div>");
-            div.append("<div class='recom1'>" + json[i].Recom + "</div>");
+            div.append("<div class='data name1'>" + json[i].Name +"</div>");
+            div.append("<div class='data gpa1'>" + json[i].GPA + "</div>");
+            div.append("<div class='data gre_q1'>" + json[i].GRE_Q + "</div>");
+            div.append("<div class='data gre_v1'>" + json[i].GRE_V + "</div>");
+            div.append("<div class='data essay1'>" + json[i].Essay + "</div>");
+            div.append("<div class='data recom1'>" + json[i].Recom + "</div>");
 
             //$('#hw2div').append(rowdiv); 
-            $('#frame').append(div);
+            $('#dataframe').append(div);
 
         //var div_gpa;
         //for (var a = 0; a < json.length; a++) {
