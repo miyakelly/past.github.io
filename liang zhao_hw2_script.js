@@ -3,7 +3,7 @@ $(document).ready(function () {
         var div;
         for (var i = 0; i < json.length; i++) {
 
-            div = $("<div>");
+            div = $("<div>"); //create a <div> for data
 
             div.append("<div class='data name1'>" + json[i].Name +"</div>");
             div.append("<div class='data gpa1'>" + json[i].GPA + "</div>");
