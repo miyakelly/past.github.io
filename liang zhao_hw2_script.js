@@ -12,7 +12,6 @@ $(document).ready(function () {
             div.append("<div class='data essay1'>" + json[i].Essay + "</div>");
             div.append("<div class='data recom1'>" + json[i].Recom + "</div>");
 
-            //$('#hw2div').append(rowdiv); 
             $('#dataframe').append(div);
 
         //var div_gpa;
