@@ -27,3 +27,27 @@
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+#header {
+	font-family: Tinos;
+	text-align: center;
+	display: block;
+	font-size: 30px;
+	font-weight: bold;
+	margin: 40px auto;
+	min-width: 710px;
+}
+
+.top_divider {
+	background-color: #1E1E20;
+	height: 1px;
+	width: 90%;
+	display: inline-block;
+}
+
+#insight {
+	font-family: Tinos;
+	font-size: 20px;
+	text-align: left;
+	margin: 0 10%;
+}

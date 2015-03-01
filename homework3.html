@@ -2,140 +2,151 @@
 <html>
 <head>
 <title>Homework 3 - Liang Zhao</title>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="homework3.css">
+<link href="http://fonts.googleapis.com/css?family=Abel|Medula+One|Cantarell|Lato|Tinos" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id="container">
-    <div id="header">
+    
+    <div id="header" class="text">
+      How Countries Spend Time in Science/Mathematics
+      <div class="top_divider"></div>
     </div>
-<svg class="chart"></svg>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
 
-var data = {
+    <div id="description">
+      <div id="insight" class="text">Insight</div>
+    </div>
+
+  <div id="visualization">    
+  <svg class="chart"></svg>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script>
+
+  var data = {
   labels: [ 'Armenia', 'Australia','Austria','Azerbaijan','Bahrain','Chile','Chinese Taipei','Croatia','Czech Republic','Denmark','England','Finland','Georgia','Germany','Hong Kong','Hungary','Iran, Islamic Republic of','Ireland','Italy','Japan','Kazakhstan','Korea, Republic of','Kuwait','Lithuania','Malta','Morocco','Netherlands','New Zealand','Northern Ireland-GBR','Norway','Oman','Poland','Portugal','Qatar','Romania','Russian Federation','Saudi Arabia','Serbia','Singapore','Slovak Republic','Slovenia','Spain','Sweden','Thailand','Tunisia','Turkey','United Arab Emirates','United States','Yemen'],
   series: [
     {
-      label: 'Total Instructional hrs per year',
+      label: 'Total Instructional hrs/year',
       values: [ 851, 1008, 808, 804, 964, 1228, 989, 776, 782, 863, 970, 779, 748, 863, 1059, 760, 727, 854, 1085, 891, 779, 789, 928, 649, 891, 1040, 1074, 925, 970, 817, 999, 764, 940, 1068, 796, 660, 977, 778, 1012, 780, 684, 884, 849, 1201, 963, 900, 1025, 1078, 831]
     },
     {
-      label: 'Instructional hrs in mathematics per year',
+      label: 'Instructional hrs in mathematics/year',
       values: [ 139, 230, 146, 130,  131, 231, 133, 134, 163, 124, 188,139, 148, 163, 158, 148, 146, 150, 214, 150, 140, 121, 120, 133, 183, 174, 195, 168, 232, 157, 170, 157, 250, 185, 148, 104, 147, 153, 208, 147, 169, 167, 138, 167, 175, 126, 154, 206, 135]
     },
     {
-      label: 'Instructional hrs in science per year',
-      values: [54, 65, 96, 61, 85, 161, 90, 95, 60, 62, 76, 98, 110, 75, 88, 72, 106, 63, 78, 91, 57, 92, 85, 60, 39, 44, 42, 52, 72, 55, 120, 64, 162, 135, 56, 49, 82, 72, 96, 101, 101, 145, 75, 109, 93, 94, 108, 105, 91] 
+      label: 'Instructional hrs in science/year',
+      values: [ 54, 65, 96, 61, 85, 161, 90, 95, 60, 62, 76, 98, 110, 75, 88, 72, 106, 63, 78, 91, 57, 92, 85, 60, 39, 44, 42, 52, 72, 55, 120, 64, 162, 135, 56, 49, 82, 72, 96, 101, 101, 145, 75, 109, 93, 94, 108, 105, 91] 
     },]
-};
+  };
 
-var chartWidth       = 300,
-    barHeight        = 20,
-    groupHeight      = barHeight * data.series.length,
-    gapBetweenGroups = 15,
-    spaceForLabels   = 150,
-    spaceForLegend   = 150;
+  var chartWidth       = 300,
+      barHeight        = 20,
+      groupHeight      = barHeight * data.series.length,
+      gapBetweenGroups = 10,
+      spaceForLabels   = 150,
+      spaceForLegend   = 150;
 
 // Zip the series data together (first values, second values, etc.)
-var zippedData = [];
-for (var i=0; i<data.labels.length; i++) {
-  for (var j=0; j<data.series.length; j++) {
-    zippedData.push(data.series[j].values[i]);
+  var zippedData = [];
+  for (var i=0; i<data.labels.length; i++) {
+      for (var j=0; j<data.series.length; j++) {
+        zippedData.push(data.series[j].values[i]);
+      }
   }
-}
 
 // Color scale
-var color = d3.scale.category20();
-var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+  var color = d3.scale.category20();
+  var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
 
-var x = d3.scale.linear()
-    .domain([0, d3.max(zippedData)])
-    .range([0, chartWidth]);
+  var x = d3.scale.linear()
+      .domain([0, d3.max(zippedData)])
+      .range([0, chartWidth]);
 
-var y = d3.scale.linear()
-    .range([chartHeight + gapBetweenGroups, 0]);
+  var y = d3.scale.linear()
+      .range([chartHeight + gapBetweenGroups, 0]);
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .tickFormat('')
-    .tickSize(0)
-    .orient("left");
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .tickFormat('')
+      .tickSize(0)
+      .orient("left");
 
 // Specify the chart area and dimensions
-var chart = d3.select(".chart")
-    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
-    .attr("height", chartHeight);
+  var chart = d3.select(".chart")
+      .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+      .attr("height", chartHeight);
 
 // Create bars
-var bar = chart.selectAll("g")
-    .data(zippedData)
-    .enter().append("g")
-    .attr("transform", function(d, i) {
-      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
-    });
+  var bar = chart.selectAll("g")
+      .data(zippedData)
+      .enter().append("g")
+      .attr("transform", function(d, i) {
+        return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
+      });
 
 // Create rectangles of the correct width
-bar.append("rect")
-    .attr("fill", function(d,i) { return color(i % data.series.length); })
-    .attr("class", "bar")
-    .attr("width", x)
-    .attr("height", barHeight - 1);
+  bar.append("rect")
+     .attr("fill", function(d,i) { return color(i % data.series.length); })
+     .attr("class", "bar")
+     .attr("width", x)
+     .attr("height", barHeight - 1);
 
 // Add text label in bar
-bar.append("text")
-    .attr("x", function(d) { return x(d) - 3; })
-    .attr("y", barHeight / 2)
-    .attr("fill", "red")
-    .attr("dy", ".35em")
-    .text(function(d) { return d; });
+  bar.append("text")
+     .attr("x", function(d) { return x(d) - 3; })
+     .attr("y", barHeight / 2)
+     .attr("fill", "red")
+     .attr("dy", ".35em")
+     .text(function(d) { return d; });
 
 // Draw labels
-bar.append("text")
-    .attr("class", "label")
-    .attr("x", function(d) { return - 10; })
-    .attr("y", groupHeight / 2)
-    .attr("dy", ".35em")
-    .text(function(d,i) {
-      if (i % data.series.length === 0)
-        return data.labels[Math.floor(i/data.series.length)];
-      else
-        return ""});
+  bar.append("text")
+     .attr("class", "label")
+     .attr("x", function(d) { return - 10; })
+     .attr("y", groupHeight / 2)
+     .attr("dy", ".35em")
+     .text(function(d,i) {
+       if (i % data.series.length === 0)
+          return data.labels[Math.floor(i/data.series.length)];
+       else
+          return ""});
 
-chart.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
-      .call(yAxis);
+  chart.append("g")
+       .attr("class", "y axis")
+       .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+       .call(yAxis);
 
 // Draw legend
-var legendRectSize = 18,
-    legendSpacing  = 4;
+  var legendRectSize = 18,
+      legendSpacing  = 4;
 
-var legend = chart.selectAll('.legend')
-    .data(data.series)
-    .enter()
-    .append('g')
-    .attr('transform', function (d, i) {
+  var legend = chart.selectAll('.legend')
+      .data(data.series)
+      .enter()
+      .append('g')
+      .attr('transform', function (d, i) {
         var height = legendRectSize + legendSpacing;
         var offset = -gapBetweenGroups/2;
         var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
         var vert = i * height - offset;
         return 'translate(' + horz + ',' + vert + ')';
-    });
+      });
 
-legend.append('rect')
-    .attr('width', legendRectSize)
-    .attr('height', legendRectSize)
-    .style('fill', function (d, i) { return color(i); })
-    .style('stroke', function (d, i) { return color(i); });
+  legend.append('rect')
+        .attr('width', legendRectSize)
+        .attr('height', legendRectSize)
+        .style('fill', function (d, i) { return color(i); })
+        .style('stroke', function (d, i) { return color(i); });
 
-legend.append('text')
-    .attr('class', 'legend')
-    .attr('x', legendRectSize + legendSpacing)
-    .attr('y', legendRectSize - legendSpacing)
-    .text(function (d) { return d.label; });
+  legend.append('text')
+        .attr('class', 'legend')
+        .attr('x', legendRectSize + legendSpacing)
+        .attr('y', legendRectSize - legendSpacing)
+        .text(function (d) { return d.label; });
 
-</script>
+  </script>
+</div>
 </div>
 </body>
 </html>
