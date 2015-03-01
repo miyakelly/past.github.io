@@ -1,256 +1,32 @@
 <!DOCTYPE html>
+<html>
+<head>
+<title>Homework 3 - Liang Zhao</title>
 <meta charset="utf-8">
-<style>
-
-/*
-.chart rect {
-  fill: steelblue;
-}
-*/
-.chart .legend {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: start;
-  font-size: 12px;
-}
-
-.chart text {
-  fill: black;
-  font: 10px sans-serif;
-  text-anchor: start;
-}
-
-.chart .label {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: end;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-
-</style>
+<link rel="stylesheet" type="text/css" href="homework3.css">
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+    </div>
 <svg class="chart"></svg>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
 var data = {
-  labels: [
-  'Armenia', 
-'Australia',
-'Austria',
-'Azerbaijan',
-'Bahrain',
-'Chile',
-'Chinese Taipei',
-'Croatia',
-'Czech Republic',
-'Denmark',
-'England',
-'Finland',
-'Georgia',
-'Germany',
-'Hong Kong',
-'Hungary',
-'Iran, Islamic Republic of',
-'Ireland',
-'Italy',
-'Japan',
-'Kazakhstan',
-'Korea, Republic of',
-'Kuwait',
-'Lithuania',
-'Malta',
-'Morocco',
-'Netherlands',
-'New Zealand',
-'Northern Ireland-GBR',
-'Norway',
-'Oman',
-'Poland',
-'Portugal',
-'Qatar',
-'Romania',
-'Russian Federation',
-'Saudi Arabia',
-'Serbia',
-'Singapore',
-'Slovak Republic',
-'Slovenia',
-'Spain',
-'Sweden',
-'Thailand',
-'Tunisia',
-'Turkey',
-'United Arab Emirates',
-'United States',
-'Yemen',
-  ],
+  labels: [ 'Armenia', 'Australia','Austria','Azerbaijan','Bahrain','Chile','Chinese Taipei','Croatia','Czech Republic','Denmark','England','Finland','Georgia','Germany','Hong Kong','Hungary','Iran, Islamic Republic of','Ireland','Italy','Japan','Kazakhstan','Korea, Republic of','Kuwait','Lithuania','Malta','Morocco','Netherlands','New Zealand','Northern Ireland-GBR','Norway','Oman','Poland','Portugal','Qatar','Romania','Russian Federation','Saudi Arabia','Serbia','Singapore','Slovak Republic','Slovenia','Spain','Sweden','Thailand','Tunisia','Turkey','United Arab Emirates','United States','Yemen'],
   series: [
     {
       label: 'Total Instructional hrs per year',
-      values: [851,
-1008,
-808,
-804,
-964,
-1228,
-989,
-776,
-782,
-863,
-970,
-779,
-748,
-863,
-1059,
-760,
-727,
-854,
-1085,
-891,
-779,
-789,
-928,
-649,
-891,
-1040,
-1074,
-925,
-970,
-817,
-999,
-764,
-940,
-1068,
-796,
-660,
-977,
-778,
-1012,
-780,
-684,
-884,
-849,
-1201,
-963,
-900,
-1025,
-1078,
-831]
+      values: [ 851, 1008, 808, 804, 964, 1228, 989, 776, 782, 863, 970, 779, 748, 863, 1059, 760, 727, 854, 1085, 891, 779, 789, 928, 649, 891, 1040, 1074, 925, 970, 817, 999, 764, 940, 1068, 796, 660, 977, 778, 1012, 780, 684, 884, 849, 1201, 963, 900, 1025, 1078, 831]
     },
     {
       label: 'Instructional hrs in mathematics per year',
-      values: [139,
-230,
-146,
-130,
-131,
-231,
-133,
-134,
-163,
-124,
-188,
-139,
-148,
-163,
-158,
-148,
-146,
-150,
-214,
-150,
-140,
-121,
-120,
-133,
-183,
-174,
-195,
-168,
-232,
-157,
-170,
-157,
-250,
-185,
-148,
-104,
-147,
-153,
-208,
-147,
-169,
-167,
-138,
-167,
-175,
-126,
-154,
-206,
-135]
+      values: [ 139, 230, 146, 130,  131, 231, 133, 134, 163, 124, 188,139, 148, 163, 158, 148, 146, 150, 214, 150, 140, 121, 120, 133, 183, 174, 195, 168, 232, 157, 170, 157, 250, 185, 148, 104, 147, 153, 208, 147, 169, 167, 138, 167, 175, 126, 154, 206, 135]
     },
     {
       label: 'Instructional hrs in science per year',
-      values: [54,
-65,
-96,
-61,
-85,
-161,
-90,
-95,
-60,
-62,
-76,
-98,
-110,
-75,
-88,
-72,
-106,
-63,
-78,
-91,
-57,
-92,
-85,
-60,
-39,
-44,
-42,
-52,
-72,
-55,
-120,
-64,
-162,
-135,
-56,
-49,
-82,
-72,
-96,
-101,
-101,
-145,
-75,
-109,
-93,
-94,
-108,
-105,
-91]
+      values: [54, 65, 96, 61, 85, 161, 90, 95, 60, 62, 76, 98, 110, 75, 88, 72, 106, 63, 78, 91, 57, 92, 85, 60, 39, 44, 42, 52, 72, 55, 120, 64, 162, 135, 56, 49, 82, 72, 96, 101, 101, 145, 75, 109, 93, 94, 108, 105, 91] 
     },]
 };
 
@@ -360,3 +136,6 @@ legend.append('text')
     .text(function (d) { return d.label; });
 
 </script>
+</div>
+</body>
+</html>
