@@ -10,18 +10,27 @@
   <div id="container">
     
     <div id="header" class="text">
-      How Countries Spend Time in Science/Mathematics
+      <!--class="text" didn't work don't know why need to figure out-->
+      How Countries Distribute Time in Science/Mathematics
       <div class="top_divider"></div>
     </div>
 
-    <div id="description">
-      <div id="insight" class="text">Insight</div>
-    </div>
+    <div id="description" class="elem">
+      <div id="insight" class="text">
+        <p class="title1">Insight<p>
+          <p>1. In a word, time spend in mathematics > time spend in scinence.
+              <br><br>
+             2. The top three countries that spend most of the time in science are 
+          </p>
+          <p><a href="http://nces.ed.gov/programs/digest/d12/tables/dt12_460.asp">Original Dataset</a></p>
+      </div>
+    <div class="elem vertical_divider"></div>
+    
 
-  <div id="visualization">    
-  <svg class="chart"></svg>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script>
+  <div id="visualization" class="elem">    
+    <svg class="chart"></svg>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script>
 
   var data = {
   labels: [ 'Armenia', 'Australia','Austria','Azerbaijan','Bahrain','Chile','Chinese Taipei','Croatia','Czech Republic','Denmark','England','Finland','Georgia','Germany','Hong Kong','Hungary','Iran, Islamic Republic of','Ireland','Italy','Japan','Kazakhstan','Korea, Republic of','Kuwait','Lithuania','Malta','Morocco','Netherlands','New Zealand','Northern Ireland-GBR','Norway','Oman','Poland','Portugal','Qatar','Romania','Russian Federation','Saudi Arabia','Serbia','Singapore','Slovak Republic','Slovenia','Spain','Sweden','Thailand','Tunisia','Turkey','United Arab Emirates','United States','Yemen'],
@@ -146,6 +155,7 @@
         .text(function (d) { return d.label; });
 
   </script>
+</div>
 </div>
 </div>
 </body>
