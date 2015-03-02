@@ -49,14 +49,6 @@
 	position: absolute;
 }
 
-.vertical_divider {
-	background-color: #1E1E20;
-	width: 1px;
-	height: 100%;
-	margin-top: -170px;
-	margin-left: 410px;
-}
-
 #description {
 	width: 390px;
 	margin: auto 5%;
@@ -75,12 +67,12 @@
 
 #visualization {
 	margin-left: 390px;
-	margin-top: -150px;
+	margin-top: -267px;
 }
 
 a:link {
 	text-decoration: none;
-	color: black;
+	color: #000;
 }
 a:hover {
 	text-decoration:underline;
