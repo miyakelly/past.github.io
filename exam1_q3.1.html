@@ -76,8 +76,11 @@ a:active {
 <script>
 
 var margin = { top: 10, right: 200, bottom: 10, left: 20 };
+
 var width = 1000 - margin.left - margin.right ;
+
 var height = 300 - margin.top - margin.bottom;
+
 var dataset = [{
         data: [
         {
@@ -155,15 +158,18 @@ var xAxis = d3.svg.axis()
         .orient("bottom");
 var yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left"),
-    colours = d3.scale.category10(),
-    groups = svg.selectAll("g")
+        .orient("left");
+
+var colours = d3.scale.category20();
+
+var groups = svg.selectAll("g")
         .data(dataset)
         .enter()
         .append("g")
         .style("fill", function (d, i) {
         return colours(i);
     });
+
 var rects = groups.selectAll("rect")
         .data(function (d) {
         return d;

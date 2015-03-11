@@ -210,11 +210,14 @@ var yScale = d3.scale.ordinal()
 var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom");
+
 var yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left"),
-    colours = d3.scale.category10(),
-    groups = svg.selectAll("g")
+        .orient("left");
+
+var colours = d3.scale.category20();
+
+var groups = svg.selectAll("g")
         .data(dataset)
         .enter()
         .append("g")
