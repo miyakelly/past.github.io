@@ -1,14 +1,14 @@
 .chart .legend {
   fill: black;
   font: 14px sans-serif;
-  text-anchor: start;
+  text-anchor: start - 10px;
   font-size: 12px;
 }
 
 .chart text {
   fill: black;
   font: 10px sans-serif;
-  text-anchor: start;
+  text-anchor: start - 10px;
 }
 
 .chart .label {
