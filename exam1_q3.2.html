@@ -223,8 +223,9 @@ var groups = svg.selectAll("g")
         .append("g")
         .style("fill", function (d, i) {
         return colours(i);
-    }),
-    rects = groups.selectAll("rect")
+    });
+
+var rects = groups.selectAll("rect")
         .data(function (d) {
         return d;
     })
@@ -251,7 +252,7 @@ var groups = svg.selectAll("g")
     svg.append("g")
        .attr("class", "axis")
        .call(yAxis);
-
+//.forEach()
 university.forEach(function (d, i) {
     svg.append("text")
         .attr("fill", "black")
