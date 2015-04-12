@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>Treemap</title>
+<script src="http://d3js.org/d3.v2.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="treemap.js"></script>
+<style>
+#chart {
+width: 820px;
+height: 700px;
+background: #bbb;
+margin: 1px auto;
+position: relative;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+text {
+	pointer-events: none;
+}
+
+.grandparent text { /* header text */
+	font-weight: bold;
+	font-size: medium;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif; 
+}
+
+rect {
+fill: none;
+stroke: #fff;
+}
+
+rect.parent,
+	.grandparent rect {
+		stroke-width: 2px;
+	}
+
+.grandparent rect {
+fill: #fff;
+}
+
+.children rect.parent,
+	.grandparent rect {
+cursor: pointer;
+	}
+
+rect.parent {
+	pointer-events: all; 
+}
+
+.children:hover rect.child,
+	.grandparent:hover rect {
+fill: #aaa;
+	}
+
+.textdiv { /* text in the boxes */
+	font-size: x-small;
+padding: 5px;
+	 font-family: "Open Sans", Helvetica, Arial, sans-serif; 
+}
+</style>
+</head>
+
+<body>
+<p id="chart"></p>
+<p id="rawdata"></p>
+
+<script src="treemap.js"></script>
+<script>
+	//转换巢状结构，从key变成name 和 children
+	function reSortRoot(root,value_key) {
+		for (var key in root) {
+			if (key == "key") {
+				root.name = root.key;
+				delete root.key;
+			}
+			if (key == "values") {
+				root.children = [];
+				for (item in root.values) {
+					root.children.push(reSortRoot(root.values[item],value_key));
+				}
+				delete root.values;
+			}
+			if (key == value_key) {
+				root.value = parseFloat(root[value_key]);
+				delete root[value_key];
+			}
+		}
+		return root;
+	}
+
+	$(document).ready(function() {
+	
+    	d3.csv("https://hivelab.org/static/coffee.csv", function(csv_data){
+
+	  // Build hierarchy. 
+      var nested_data = d3.nest()
+       				.key(function(d)  { return d.region; })
+       				.key(function(d)  { return d.state; })
+              		.key(function(d)  { return d.category; })
+				    .entries(csv_data);
+			
+			// Create the first title appeared above the treemap
+			var root = {};
+			
+			// Add the data to the tree
+			root.key = "Data related to coffee";
+			root.values = nested_data;
+		
+			// Change the key names and children values from .next(?????) and add values for a chosen column to define the size of the blocks
+			root = reSortRoot(root,"sales");
+			
+			// DEBUG
+// 			$("#rawdata").html(JSON.stringify(root));
+			
+			loadData(root);
+			
+		});
+
+
+	});
+</script>
+</body>
