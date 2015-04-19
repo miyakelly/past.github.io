@@ -2,20 +2,21 @@
 	width: 300px;
 	height: 460px;
 	position: relative;
-	background: rgba(255,255,255,1);
+	background: rgba(255,255,255,1); /*white*/
 	display: inline-block;
 	margin: 10px 10px;
-	cursor: pointer;
-	color: #2c3e50;
-	box-shadow: inset 0 0 0 3px #2c3e50;
-	-webkit-transition: background 0.4s 0.5s;
-	transition: background 0.4s 0.5s;
+	/*cursor: pointer;*/
+	color: #2c3e50; /*text color*/
+	box-shadow: inset 0 0 0 4px #2c3e50;
+	-webkit-transition: background 0.4s 0.3s;
+	transition: background 0.4s 0.3s;
 }
 
 .box:hover {
-	background: rgba(255,255,255,0);
+	/*background: rgba(255,255,255,0);*/ /*why ",0"*/ /*rhas the same function as line 17*/
+	background: #2c3e50;
 	-webkit-transition-delay: 0s;
-	transition-delay: 0s;
+	transition-delay: 0s; /*the transition of the background white*/
 }
 
 .box h3 {
@@ -28,7 +29,7 @@
 }
 
 .box span {
-	display: block;
+	display: block; /*block takes as much horizontal space as they can*/
 	font-weight: 400;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -37,16 +38,43 @@
 }
 
 .box h3,
-.box span {
-	-webkit-transition: color 0.4s 0.5s;
-	transition: color 0.4s 0.5s;
+.box span,
+.box a {
+	-webkit-transition: color 0.4s 0.3s;
+	transition: color 0.4s 0.3s;
 }
 
-.box:hover h3,
-.box:hover span {
+.box2:hover h3,
+.box2:hover span,
+.box2:hover a {
+	color: #fff; /*text color after hover*/
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+/*When add .box1:hover a, the reserve color speed of the text-color (from white to dark blue) 
+  of "original data" is slower than "-" which is inside a single span tag*/
+.box1:hover span {
 	color: #fff;
 	-webkit-transition-delay: 0s;
 	transition-delay: 0s;
+}
+
+.box1:hover .title1:after {
+	color: #fff;
+	content: "This dataset is one of the web's most comprehensive and up to date UFO information sources, add more description";
+	position: absolute;
+	left: 25px;
+	top: 40px;
+	font-size: 20px;
+	line-height: 25px;
+	margin: 0 auto;
+	text-align: center;
+	width: 250px;
+	height: 900px;
+	font-weight: 100;
+	-webkit-transition: color 0.4s 0.3s;
+	transition: color 0.4s 0.3s;
 }
 
 .box svg {
@@ -56,11 +84,11 @@
 }
 
 .box svg line {
-	stroke-width: 3;
-	stroke: #ecf0f1;
-	fill: none;
-	-webkit-transition: all .8s ease-in-out;
-	transition: all .8s ease-in-out;
+	stroke-width: 3; /*stroke width*/
+	stroke: #ecf0f1; /*stroke color, greyish*/
+	fill: none; /*the lines doesn't have color*/
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out; /*line moving speed*/
 }
 
 .box:hover svg line {
