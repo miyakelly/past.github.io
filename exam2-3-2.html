@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Liang Zhao - Exam 2 - 3.1</title>
+</head>
+<body>
+	<table id="table">
+    	<thead style="text-align: right"></thead>
+    	<tbody></tbody>
+	</table>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script>
+	var clicked = false; //0
+
+	d3.json("exam2.json", function(error, data) {
+		// create the table header(??)
+
+		var sortData = d3.keys(data[0]).filter(function(key) {
+    						return key != "ItemNo";
+  							});
+
+		var thead = d3.select("thead").selectAll("th")
+			// .key 
+			// Returns an array containing the property names of the specified object (an associative array). The order of the returned array is undefined.
+			.data(d3.keys(data[0]))
+			.enter()
+			.append("th")
+			.text(function(d) {return d;})
+			.style({"background-color": "#d3d3d3", "text-align": "right", "width": "100px", "padding": "50px, 20px"})//padding?????
+			.on("click", function(d) {
+				return refreshTable(d);});
+		
+		//change color
+		thead.on("click", function() {
+			if (clicked == false) {
+				d3.select(this).transition()
+							   .duration(100)
+							   .style("background-color", "#E8980C");};
+		});
+		// fill the table	
+		// create rows
+		var tr = d3.select("tbody").selectAll("tr").data(data);	
+		
+		// add id for each row.
+		tr.enter().append("tr")
+		  .attr("id", function (data, i) { 
+				if(i < data.length, i++ )
+					{return "content" + i;}
+				else {
+					return "content" + 1;} 
+				// don't know why the first row doesn't get a class so add else to manually add class.
+				});
+
+		// create cells
+		// td: table data (content in each cell)
+		var td = tr.selectAll("td")
+			.data(function(d){return d3.values(d);});	
+	
+		td.enter().append("td")
+			.text(function(d) {return d;})
+			.style({"text-align": "right"}); 
+		
+		// d3.selectAll("body")
+		// .on("click", function (d) {
+		// 	for (var i = 0; i < data.length; i ++) {
+		// 		clicked = false;
+		// 	}
+		// 	clicked = true;
+		// 	d3.select(this).transition()
+		// 	.duration(100)
+		// 	.style("background-color", "#fff");
+		// });
+
+		// must be a better way
+		// hover effect for row 1
+		for ( i = 1; i <= data.length; i++ ) {
+			d3.selectAll("#content" + i)
+			.on("mouseover", function(){
+				var j = getContNum(this);
+
+				if (clicked == j) {
+	     			 d3.select(this)
+	      			   .style("background-color", "green");
+	   			 }
+	   			 else {
+	   			 	d3.select(this)
+	      			.style("background-color", "#FFE700");
+	   			 };})
+			.on("mouseout", function(){
+				var j = getContNum(this);
+
+				if (clicked == j) {
+	     			 d3.select(this)
+	       			   .style("background-color", "green");
+	       			}
+	       		else {
+	       			d3.select(this)
+	       			   .style("background-color", "");
+	       		};
+	       	})
+			.on("click", function() { 
+				if(clicked !== false){
+					d3.select('tbody').selectAll('tr:nth-child('
+					+ clicked +')')
+					.style("background-color", "");
+				}
+
+				var j = getContNum(this);
+
+				     clicked = j;
+					 d3.select(this)
+	      			   .style("background-color", "#0DFFAD");
+			});
+		};//end of for loop
+
+		function getContNum(t){
+			var str = d3.select(t).attr("id");
+			var tmp = str.split("content");//.split
+			var j = tmp[1];
+			return j
+		}
+
+		});
+	</script>
+</body>
+</html>
+
