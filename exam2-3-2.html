@@ -43,8 +43,10 @@
 				  //data???col 
 				  //no relationship between data and sort so far????
 				  //re-create tr,td according to data
-
+				  fillTable();//??? how to call a function???
 				
+				  reHoverAndClick();
+				  
 				function sort(a, b) {
 					if (typeof a == "string"){
 							return a.localeCompare(b);
@@ -55,8 +57,9 @@
 				}
 		});
 
+		//to fill the table at the first time
 		fillTable();
-		// fill the table
+		// fill the table //???the execution order and the layout of the codes???
 		function fillTable() {	
 			// create rows
 			var tr = d3.select("tbody").selectAll("tr").data(data);	
@@ -92,47 +95,49 @@
 		// 	.style("background-color", "#fff");
 		// });
 
-		// must be a better way
-		// hover effect for row 1
-		for ( i = 1; i <= data.length; i++ ) {
-			d3.selectAll("#content" + i)
-			.on("mouseover", function(){
-				var j = getContNum(this);
+		reHoverAndClick();
 
-				if (clicked == j) {
-	     			 d3.select(this)
-	      			   .style("background-color", "green");
-	   			 }
-	   			 else {
-	   			 	d3.select(this)
-	      			.style("background-color", "#FFE700");
-	   			 };})
-			.on("mouseout", function(){
-				var j = getContNum(this);
+		function reHoverAndClick () {
+			for ( i = 1; i <= data.length; i++ ) {
+				d3.selectAll("#content" + i)
+				.on("mouseover", function(){
+					var j = getContNum(this);
 
-				if (clicked == j) {
-	     			 d3.select(this)
-	       			   .style("background-color", "green");
-	       			}
-	       		else {
-	       			d3.select(this)
-	       			   .style("background-color", "");
-	       		};
-	       	})
-			.on("click", function() { 
-				if(clicked !== false){
-					d3.select('tbody').selectAll('tr:nth-child('
-					+ clicked +')')
-					.style("background-color", "");
-				}
+					if (clicked == j) {
+		     			 d3.select(this)
+		      			   .style("background-color", "green");
+		   			 }
+		   			 else {
+		   			 	d3.select(this)
+		      			.style("background-color", "#FFE700");
+		   			 };})
+				.on("mouseout", function(){
+					var j = getContNum(this);
 
-				var j = getContNum(this);
+					if (clicked == j) {
+		     			 d3.select(this)
+		       			   .style("background-color", "green");
+		       			}
+		       		else {
+		       			d3.select(this)
+		       			   .style("background-color", "");
+		       		};
+		       	})
+				.on("click", function() { 
+					if(clicked !== false){
+						d3.select('tbody').selectAll('tr:nth-child('
+						+ clicked +')')
+						.style("background-color", "");
+					}
 
-				     clicked = j;
-					 d3.select(this)
-	      			   .style("background-color", "#0DFFAD");
-			});
-		};//end of for loop
+					var j = getContNum(this);
+
+					     clicked = j;
+						 d3.select(this)
+		      			   .style("background-color", "#0DFFAD");
+				});
+			};//end of for loop
+		};
 
 		function getContNum(t){
 			var str = d3.select(t).attr("id");
