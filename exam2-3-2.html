@@ -13,8 +13,8 @@
 	var clicked = false; //0
 
 	d3.json("exam2.json", function(error, data) {
+		
 		// create the table header(??)
-
 		var sortData = d3.keys(data[0]).filter(function(key) {
     						return key != "ItemNo";
   							});
@@ -27,39 +27,60 @@
 			.append("th")
 			.text(function(d) {return d;})
 			.style({"background-color": "#d3d3d3", "text-align": "right", "width": "100px", "padding": "50px, 20px"})//padding?????
-			.on("click", function(d) {
-				return refreshTable(d);});
+			// .on("click", function(d) {
+			// 	return refreshTable(d);});
 		
 		//change color
-		thead.on("click", function() {
-			if (clicked == false) {
-				d3.select(this).transition()
-							   .duration(100)
-							   .style("background-color", "#E8980C");};
-		});
-		// fill the table	
-		// create rows
-		var tr = d3.select("tbody").selectAll("tr").data(data);	
-		
-		// add id for each row.
-		tr.enter().append("tr")
-		  .attr("id", function (data, i) { 
-				if(i < data.length, i++ )
-					{return "content" + i;}
-				else {
-					return "content" + 1;} 
-				// don't know why the first row doesn't get a class so add else to manually add class.
-				});
+		thead.on("click", function(dataSortCol) {
+			// if (clicked == false) {
+				d3.select(this)
+				  .style("background-color", "#E8980C");
 
-		// create cells
-		// td: table data (content in each cell)
-		var td = tr.selectAll("td")
-			.data(function(d){return d3.values(d);});	
-	
-		td.enter().append("td")
-			.text(function(d) {return d;})
-			.style({"text-align": "right"}); 
+				  //delte all the trs
+				  d3.select("tbody").selectAll("tr").remove();
+				  //sort data
+				  data.sort(function(a,b){return sort(b[dataSortCol], a[dataSortCol]);});
+				  //data???col 
+				  //no relationship between data and sort so far????
+				  //re-create tr,td according to data
+
+				
+				function sort(a, b) {
+					if (typeof a == "string"){
+							return a.localeCompare(b);
+					}
+					else if (typeof a == "number"){
+						return a > b ? 1 : a == b ? 0 : -1;
+					}
+				}
+		});
+
+		fillTable();
+		// fill the table
+		function fillTable() {	
+			// create rows
+			var tr = d3.select("tbody").selectAll("tr").data(data);	
+			
+			// add id for each row.
+			tr.enter().append("tr")
+			  .attr("id", function (data, i) { 
+					if(i < data.length, i++ )
+						{return "content" + i;}
+					else {
+						return "content" + 1;} 
+					// don't know why the first row doesn't get a class so add else to manually add class.
+					});
+
+			// create cells
+			// td: table data (content in each cell)
+			var td = tr.selectAll("td")
+				.data(function(d){return d3.values(d);});	
 		
+			td.enter().append("td")
+				.text(function(d) {return d;})
+				.style({"text-align": "right"}); 
+		};
+
 		// d3.selectAll("body")
 		// .on("click", function (d) {
 		// 	for (var i = 0; i < data.length; i ++) {
