@@ -35,6 +35,11 @@ a.white span {
 	text-decoration: none;
 }
 
+/*menu color*/
+a.menu {
+	color:#fff;
+}
+
 a.white:hover span {
 	color: #ccc;
 	text-decoration: none;

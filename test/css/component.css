@@ -37,7 +37,8 @@
 .menu {
 	position: relative;
 	display: inline-block;
-	padding: 0 2em;
+	padding: 0em 4em;
+	margin-top: 5em;
 	color: #fff;
 	font-family: "Lato";
 	font-weight: 100;
@@ -45,6 +46,10 @@
 	font-size: 15px;
 }
 
+.menu:hover {
+	border-color: #fff;
+	border-width: 1px;
+}
 .box h3 {
 	font-family: "Lato";
 	font-size: 50px;
